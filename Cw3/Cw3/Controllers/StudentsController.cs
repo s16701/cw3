@@ -34,7 +34,6 @@ namespace Cw3.Controllers
         }
 
         [HttpPost]
-
         public IActionResult CreateStudent(Student student)
         {
             student.IndexNumber = $"s{new Random().Next(1, 10000)}";
@@ -44,15 +43,26 @@ namespace Cw3.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateStudent(int id, Student student)
         {
+            var s1 = new Student { IdStudent = 1, FirstName = "Jan", LastName = "Kowalski", IndexNumber = "s20001" };
+
+            s1.FirstName = student.FirstName;
+            s1.LastName = student.LastName;
+            s1.IndexNumber = student.IndexNumber;
             
-            return Ok(student);
+            return Ok("Aktualizacja dokończona");
         }
 
         [HttpDelete("{id}")]
         public IActionResult RemoveStudent(int id)
         {
-            
-            return Ok(student);
+            var s1 = new Student { IdStudent = 1, FirstName = "Jan", LastName = "Kowalski", IndexNumber = "s20001" };
+
+            if(s1.IdStudent == id)
+            {
+                s1 = null;
+            }
+
+            return Ok("Usuwanie ukończone");
         }
     }
 }
